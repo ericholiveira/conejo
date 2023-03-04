@@ -1,33 +1,16 @@
 import { GetServerSidePropsContext } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
 import type { ReactElement } from 'react';
 import type { NextPageWithLayout } from 'types';
-import env from '../lib/env'
+import Navbar from '../components/ui/Navbar';
+
 
 const Home: NextPageWithLayout = () => {
   const { t } = useTranslation('common');
-
   return (
-    <div className="container mx-auto">
-      <div className="navbar bg-base-100">
-        <div className="flex-1">
-          <Link href="/">
-            <a className="btn-ghost btn text-xl normal-case">{env.product}</a>
-          </Link>
-        </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal p-0">
-            <li>
-              <a>{t('sign-up')}</a>
-            </li>
-            <li>
-              <a>{t('item-3')}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+    <div className="container">
+      <Navbar/>
     </div>
   );
 };

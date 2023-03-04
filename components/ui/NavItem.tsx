@@ -18,17 +18,9 @@ const NavItem = ({
 
   return (
     <NextLink href={href}>
-      <a
-        href={href}
-        onClick={onClick}
-        className={classNames(
-          active ? 'bg-gray-100' : '',
-          'flex items-center rounded-lg p-2 text-sm font-semibold text-gray-900 hover:bg-gray-100'
-        )}
-      >
-        <Icon className="h-5 w-5" />
-        <span className="ml-3">{text}</span>
-      </a>
+      <a onClick={onClick} href="/dashboard" className={classNames(
+          active ? 'bordered' : '',
+        )}><Icon className="h-5 w-5" />{text}</a>
     </NextLink>
   )
 }
