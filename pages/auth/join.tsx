@@ -1,29 +1,29 @@
-import GithubButton from '@/components/interfaces/Auth/GithubButton';
-import GoogleButton from '@/components/interfaces/Auth/GoogleButton';
-import Join from '@/components/interfaces/Auth/Join';
-import JoinWithInvitation from '@/components/interfaces/Auth/JoinWithInvitation';
-import { AuthLayout } from '@/components/layouts';
-import { getParsedCookie } from '@/lib/cookie';
-import { inferSSRProps } from '@/lib/inferSSRProps';
-import { GetServerSidePropsContext } from 'next';
-import { useSession } from 'next-auth/react';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import type { ReactElement } from 'react';
-import type { NextPageWithLayout } from 'types';
+import GithubButton from '@/components/interfaces/Auth/GithubButton'
+import GoogleButton from '@/components/interfaces/Auth/GoogleButton'
+import Join from '@/components/interfaces/Auth/Join'
+import JoinWithInvitation from '@/components/interfaces/Auth/JoinWithInvitation'
+import { AuthLayout } from '@/components/layouts'
+import { getParsedCookie } from '@/lib/cookie'
+import { inferSSRProps } from '@/lib/inferSSRProps'
+import { GetServerSidePropsContext } from 'next'
+import { useSession } from 'next-auth/react'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import type { ReactElement } from 'react'
+import type { NextPageWithLayout } from 'types'
 
 const Signup: NextPageWithLayout<inferSSRProps<typeof getServerSideProps>> = ({
   inviteToken,
   next,
 }) => {
-  const { status } = useSession();
-  const router = useRouter();
-  const { t } = useTranslation('common');
+  const { status } = useSession()
+  const router = useRouter()
+  const { t } = useTranslation('common')
 
   if (status === 'authenticated') {
-    router.push('/');
+    router.push('/')
   }
 
   return (
@@ -50,8 +50,8 @@ const Signup: NextPageWithLayout<inferSSRProps<typeof getServerSideProps>> = ({
         </Link>
       </p>
     </>
-  );
-};
+  )
+}
 
 Signup.getLayout = function getLayout(page: ReactElement) {
   return (
@@ -61,15 +61,15 @@ Signup.getLayout = function getLayout(page: ReactElement) {
     >
       {page}
     </AuthLayout>
-  );
-};
+  )
+}
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { req, res, locale }: GetServerSidePropsContext = context;
+  const { req, res, locale }: GetServerSidePropsContext = context
 
-  const cookieParsed = getParsedCookie(req, res);
+  const cookieParsed = getParsedCookie(req, res)
 
   return {
     props: {
@@ -77,7 +77,7 @@ export const getServerSideProps = async (
       inviteToken: cookieParsed.token,
       next: cookieParsed.url ?? '/auth/login',
     },
-  };
-};
+  }
+}
 
-export default Signup;
+export default Signup

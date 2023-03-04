@@ -1,12 +1,12 @@
 type GetSSRResult<TProps> =
   | { props: TProps }
   | { redirect: any }
-  | { notFound: boolean };
+  | { notFound: boolean }
 
-type GetSSRFn<TProps> = (args: any) => Promise<GetSSRResult<TProps>>;
+type GetSSRFn<TProps> = (args: any) => Promise<GetSSRResult<TProps>>
 
 export type inferSSRProps<TFn extends GetSSRFn<any>> = TFn extends GetSSRFn<
   infer TProps
 >
   ? NonNullable<TProps>
-  : never;
+  : never

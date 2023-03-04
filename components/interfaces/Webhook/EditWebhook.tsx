@@ -1,17 +1,17 @@
-import { Error, Loading } from '@/components/ui';
-import type { Team } from '@prisma/client';
-import axios from 'axios';
-import type { FormikHelpers } from 'formik';
-import useWebhook from 'hooks/useWebhook';
-import useWebhooks from 'hooks/useWebhooks';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import toast from 'react-hot-toast';
-import type { EndpointOut } from 'svix';
-import type { WebookFormSchema } from 'types';
-import type { ApiResponse } from 'types';
+import { Error, Loading } from '@/components/ui'
+import type { Team } from '@prisma/client'
+import axios from 'axios'
+import type { FormikHelpers } from 'formik'
+import useWebhook from 'hooks/useWebhook'
+import useWebhooks from 'hooks/useWebhooks'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import toast from 'react-hot-toast'
+import type { EndpointOut } from 'svix'
+import type { WebookFormSchema } from 'types'
+import type { ApiResponse } from 'types'
 
-import ModalForm from './Form';
+import ModalForm from './Form'
 
 const EditWebhook = ({
   visible,
@@ -19,28 +19,28 @@ const EditWebhook = ({
   team,
   endpoint,
 }: {
-  visible: boolean;
-  setVisible: (visible: boolean) => void;
-  team: Team;
-  endpoint: EndpointOut;
+  visible: boolean
+  setVisible: (visible: boolean) => void
+  team: Team
+  endpoint: EndpointOut
 }) => {
-  const { isLoading, isError, webhook } = useWebhook(team.slug, endpoint.id);
-  const { t } = useTranslation('common');
-  const { mutateWebhooks } = useWebhooks(team.slug);
+  const { isLoading, isError, webhook } = useWebhook(team.slug, endpoint.id)
+  const { t } = useTranslation('common')
+  const { mutateWebhooks } = useWebhooks(team.slug)
 
   if (isLoading || !webhook) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   const onSubmit = async (
     values: WebookFormSchema,
     formikHelpers: FormikHelpers<WebookFormSchema>
   ) => {
-    const { name, url, eventTypes } = values;
+    const { name, url, eventTypes } = values
 
     const response = await axios.put<ApiResponse>(
       `/api/teams/${team.slug}/webhooks/${endpoint.id}`,
@@ -49,23 +49,23 @@ const EditWebhook = ({
         url,
         eventTypes,
       }
-    );
+    )
 
-    const { data: webhooks, error } = response.data;
+    const { data: webhooks, error } = response.data
 
     if (error) {
-      toast.error(error.message);
-      return;
+      toast.error(error.message)
+      return
     }
 
     if (webhooks) {
-      toast.success(t('webhook-created'));
+      toast.success(t('webhook-created'))
     }
 
-    mutateWebhooks();
-    formikHelpers.resetForm();
-    setVisible(false);
-  };
+    mutateWebhooks()
+    formikHelpers.resetForm()
+    setVisible(false)
+  }
 
   return (
     <ModalForm
@@ -78,7 +78,7 @@ const EditWebhook = ({
       }}
       onSubmit={onSubmit}
     />
-  );
-};
+  )
+}
 
-export default EditWebhook;
+export default EditWebhook

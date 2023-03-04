@@ -1,21 +1,21 @@
-import { UpdatePassword } from '@/components/interfaces/Account';
-import type { GetServerSidePropsContext } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { UpdatePassword } from '@/components/interfaces/Account'
+import type { GetServerSidePropsContext } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Password = () => {
-  return <UpdatePassword />;
-};
+  return <UpdatePassword />
+}
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { locale }: GetServerSidePropsContext = context;
+  const { locale }: GetServerSidePropsContext = context
 
   return {
     props: {
       ...(locale ? await serverSideTranslations(locale, ['common']) : {}),
     },
-  };
-};
+  }
+}
 
-export default Password;
+export default Password

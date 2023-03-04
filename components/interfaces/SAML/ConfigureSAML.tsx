@@ -1,26 +1,26 @@
-import { getAxiosError } from '@/lib/common';
-import type { SAMLSSORecord } from '@boxyhq/saml-jackson';
-import { Team } from '@prisma/client';
-import axios from 'axios';
-import { useFormik } from 'formik';
-import useSAMLConfig from 'hooks/useSAMLConfig';
-import { useTranslation } from 'next-i18next';
-import { Button, Modal, Textarea } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { ApiResponse } from 'types';
-import * as Yup from 'yup';
+import { getAxiosError } from '@/lib/common'
+import type { SAMLSSORecord } from '@boxyhq/saml-jackson'
+import { Team } from '@prisma/client'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import useSAMLConfig from 'hooks/useSAMLConfig'
+import { useTranslation } from 'next-i18next'
+import { Button, Modal, Textarea } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { ApiResponse } from 'types'
+import * as Yup from 'yup'
 
 const ConfigureSAML = ({
   visible,
   setVisible,
   team,
 }: {
-  visible: boolean;
-  setVisible: (visible: boolean) => void;
-  team: Team;
+  visible: boolean
+  setVisible: (visible: boolean) => void
+  team: Team
 }) => {
-  const { mutateSamlConfig } = useSAMLConfig(team.slug);
-  const { t } = useTranslation('common');
+  const { mutateSamlConfig } = useSAMLConfig(team.slug)
+  const { t } = useTranslation('common')
 
   const formik = useFormik({
     initialValues: {
@@ -30,7 +30,7 @@ const ConfigureSAML = ({
       metadata: Yup.string().required(),
     }),
     onSubmit: async (values) => {
-      const { metadata } = values;
+      const { metadata } = values
 
       try {
         const response = await axios.post<ApiResponse<SAMLSSORecord>>(
@@ -38,20 +38,20 @@ const ConfigureSAML = ({
           {
             encodedRawMetadata: Buffer.from(metadata).toString('base64'),
           }
-        );
+        )
 
-        const { data: connectionCreated } = response.data;
+        const { data: connectionCreated } = response.data
 
         if (connectionCreated) {
-          toast.success(t('saml-config-updated'));
-          mutateSamlConfig();
-          setVisible(false);
+          toast.success(t('saml-config-updated'))
+          mutateSamlConfig()
+          setVisible(false)
         }
       } catch (error: any) {
-        toast.error(getAxiosError(error));
+        toast.error(getAxiosError(error))
       }
     },
-  });
+  })
 
   return (
     <Modal open={visible}>
@@ -86,7 +86,7 @@ const ConfigureSAML = ({
             type="button"
             variant="outline"
             onClick={() => {
-              setVisible(!visible);
+              setVisible(!visible)
             }}
           >
             {t('close')}
@@ -94,7 +94,7 @@ const ConfigureSAML = ({
         </Modal.Actions>
       </form>
     </Modal>
-  );
-};
+  )
+}
 
-export default ConfigureSAML;
+export default ConfigureSAML

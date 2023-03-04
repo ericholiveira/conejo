@@ -1,34 +1,34 @@
-import { Card, Error, LetterAvatar, Loading } from '@/components/ui';
-import { getAxiosError } from '@/lib/common';
-import { Team } from '@prisma/client';
-import axios from 'axios';
-import useTeams from 'hooks/useTeams';
-import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import { ApiResponse } from 'types';
+import { Card, Error, LetterAvatar, Loading } from '@/components/ui'
+import { getAxiosError } from '@/lib/common'
+import { Team } from '@prisma/client'
+import axios from 'axios'
+import useTeams from 'hooks/useTeams'
+import { useTranslation } from 'next-i18next'
+import Link from 'next/link'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import { ApiResponse } from 'types'
 
 const Teams = () => {
-  const { isLoading, isError, teams, mutateTeams } = useTeams();
-  const { t } = useTranslation('common');
+  const { isLoading, isError, teams, mutateTeams } = useTeams()
+  const { t } = useTranslation('common')
   if (isLoading) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   const leaveTeam = async (team: Team) => {
     try {
-      await axios.put<ApiResponse>(`/api/teams/${team.slug}/members`);
-      toast.success(t('leave-team-success'));
-      mutateTeams();
+      await axios.put<ApiResponse>(`/api/teams/${team.slug}/members`)
+      toast.success(t('leave-team-success'))
+      mutateTeams()
     } catch (error: any) {
-      toast.error(getAxiosError(error));
+      toast.error(getAxiosError(error))
     }
-  };
+  }
 
   return (
     <Card heading="Your Teams">
@@ -77,20 +77,20 @@ const Teams = () => {
                         size="sm"
                         variant="outline"
                         onClick={() => {
-                          leaveTeam(team);
+                          leaveTeam(team)
                         }}
                       >
                         {t('leave-team')}
                       </Button>
                     </td>
                   </tr>
-                );
+                )
               })}
           </tbody>
         </table>
       </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
-export default Teams;
+export default Teams

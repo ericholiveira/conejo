@@ -1,32 +1,32 @@
-import { AuthLayout } from '@/components/layouts';
-import { InputWithLabel } from '@/components/ui';
-import { getParsedCookie } from '@/lib/cookie';
-import env from '@/lib/env';
-import { useFormik } from 'formik';
+import { AuthLayout } from '@/components/layouts'
+import { InputWithLabel } from '@/components/ui'
+import { getParsedCookie } from '@/lib/cookie'
+import env from '@/lib/env'
+import { useFormik } from 'formik'
 import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
-} from 'next';
-import { getCsrfToken, signIn, useSession } from 'next-auth/react';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import type { ReactElement } from 'react';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { NextPageWithLayout } from 'types';
-import * as Yup from 'yup';
+} from 'next'
+import { getCsrfToken, signIn, useSession } from 'next-auth/react'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import type { ReactElement } from 'react'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { NextPageWithLayout } from 'types'
+import * as Yup from 'yup'
 
 const Login: NextPageWithLayout<
   InferGetServerSidePropsType<typeof getServerSideProps>
 > = ({ csrfToken, redirectAfterSignIn }) => {
-  const { status } = useSession();
-  const router = useRouter();
-  const { t } = useTranslation('common');
+  const { status } = useSession()
+  const router = useRouter()
+  const { t } = useTranslation('common')
 
   if (status === 'authenticated') {
-    router.push(redirectAfterSignIn);
+    router.push(redirectAfterSignIn)
   }
 
   const formik = useFormik({
@@ -42,21 +42,21 @@ const Login: NextPageWithLayout<
         csrfToken,
         redirect: false,
         callbackUrl: redirectAfterSignIn,
-      });
+      })
 
-      formik.resetForm();
+      formik.resetForm()
 
       if (response?.error) {
-        toast.error(t('email-login-error'));
-        return;
+        toast.error(t('email-login-error'))
+        return
       }
 
       if (response?.status === 200 && response?.ok) {
-        toast.success(t('email-login-success'));
-        return;
+        toast.success(t('email-login-success'))
+        return
       }
     },
-  });
+  })
 
   return (
     <>
@@ -107,23 +107,23 @@ const Login: NextPageWithLayout<
         </Link>
       </p>
     </>
-  );
-};
+  )
+}
 
 Login.getLayout = function getLayout(page: ReactElement) {
   return (
     <AuthLayout heading="Welcome back" description="Log in to your account">
       {page}
     </AuthLayout>
-  );
-};
+  )
+}
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { req, res, locale }: GetServerSidePropsContext = context;
+  const { req, res, locale }: GetServerSidePropsContext = context
 
-  const cookieParsed = getParsedCookie(req, res);
+  const cookieParsed = getParsedCookie(req, res)
 
   return {
     props: {
@@ -131,7 +131,7 @@ export const getServerSideProps = async (
       csrfToken: await getCsrfToken(context),
       redirectAfterSignIn: cookieParsed.url ?? env.redirectAfterSignIn,
     },
-  };
-};
+  }
+}
 
-export default Login;
+export default Login

@@ -1,5 +1,5 @@
-import { Role, TeamMember } from '@prisma/client';
-import type { User } from 'next-auth';
+import { Role, TeamMember } from '@prisma/client'
+import type { User } from 'next-auth'
 
 export const isTeamAdmin = (user: User, members: TeamMember[]) => {
   return (
@@ -8,8 +8,8 @@ export const isTeamAdmin = (user: User, members: TeamMember[]) => {
         member.userId === user.id &&
         (member.role === Role.ADMIN || member.role === Role.OWNER)
     ).length > 0
-  );
-};
+  )
+}
 
 export const teamNavigations = (slug: string, activeTab: string) => {
   return [
@@ -43,5 +43,5 @@ export const teamNavigations = (slug: string, activeTab: string) => {
       href: `/teams/${slug}/webhooks`,
       active: activeTab === 'webhooks',
     },
-  ];
-};
+  ]
+}

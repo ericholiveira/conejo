@@ -1,12 +1,12 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
+import { useTranslation } from 'next-i18next'
+import React from 'react'
 
 const Alert: React.FC<Props> = ({ variant, message }) => {
   const classes: { [key: string]: string } = {
     danger: 'bg-red-100 border-red-400 text-red-700',
     success: 'bg-green-100 border-green-400 text-green-700',
-  };
-  const { t } = useTranslation('common');
+  }
+  const { t } = useTranslation('common')
 
   return (
     <div
@@ -26,12 +26,12 @@ const Alert: React.FC<Props> = ({ variant, message }) => {
         </svg>
       </span>
     </div>
-  );
-};
-
-interface Props {
-  message: string;
-  variant: string; //"success" | "danger" | "warning" | "info";
+  )
 }
 
-export default Alert;
+interface Props {
+  message: string
+  variant: string //"success" | "danger" | "warning" | "info";
+}
+
+export default Alert

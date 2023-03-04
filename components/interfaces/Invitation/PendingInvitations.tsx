@@ -1,26 +1,26 @@
-import { Card, Error, LetterAvatar, Loading } from '@/components/ui';
-import { Invitation, Team } from '@prisma/client';
-import axios from 'axios';
-import useInvitations from 'hooks/useInvitations';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import { ApiResponse } from 'types';
+import { Card, Error, LetterAvatar, Loading } from '@/components/ui'
+import { Invitation, Team } from '@prisma/client'
+import axios from 'axios'
+import useInvitations from 'hooks/useInvitations'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import { ApiResponse } from 'types'
 
 const PendingInvitations = ({ team }: { team: Team }) => {
   const { isLoading, isError, invitations, mutateInvitation } = useInvitations(
     team.slug
-  );
+  )
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('common')
 
   if (isLoading || !invitations) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   const deleteInvitation = async (invitation: Invitation) => {
@@ -32,20 +32,20 @@ const PendingInvitations = ({ team }: { team: Team }) => {
         },
         validateStatus: () => true,
       }
-    );
+    )
 
     if (response.error) {
-      toast.error(response.error.message);
+      toast.error(response.error.message)
     }
 
     if (response.data) {
-      mutateInvitation();
-      toast.success(t('invitation-deleted'));
+      mutateInvitation()
+      toast.success(t('invitation-deleted'))
     }
-  };
+  }
 
   if (!invitations.length) {
-    return null;
+    return null
   }
 
   return (
@@ -91,20 +91,20 @@ const PendingInvitations = ({ team }: { team: Team }) => {
                       variant="outline"
                       color="secondary"
                       onClick={() => {
-                        deleteInvitation(invitation);
+                        deleteInvitation(invitation)
                       }}
                     >
                       {t('remove')}
                     </Button>
                   </td>
                 </tr>
-              );
+              )
             })}
           </tbody>
         </table>
       </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
-export default PendingInvitations;
+export default PendingInvitations

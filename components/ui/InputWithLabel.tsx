@@ -1,4 +1,4 @@
-import { Input } from 'react-daisyui';
+import { Input } from 'react-daisyui'
 
 const InputWithLabel = ({
   label,
@@ -7,10 +7,10 @@ const InputWithLabel = ({
   descriptionText,
   ...props
 }: InputProps) => {
-  const classes = Array<string>();
+  const classes = Array<string>()
 
   if (error) {
-    classes.push('input-error');
+    classes.push('input-error')
   }
 
   return (
@@ -27,18 +27,18 @@ const InputWithLabel = ({
         </label>
       )}
     </div>
-  );
-};
-
-interface InputProps {
-  label: string;
-  name: string;
-  onChange?(x: React.ChangeEvent<HTMLInputElement>): void;
-  type?: string;
-  error?: string;
-  descriptionText?: string;
-  placeholder?: string;
-  value?: string;
+  )
 }
 
-export default InputWithLabel;
+interface InputProps {
+  label: string
+  name: string
+  onChange?(x: React.ChangeEvent<HTMLInputElement>): void
+  type?: string
+  error?: string
+  descriptionText?: string
+  placeholder?: string
+  value?: string
+}
+
+export default InputWithLabel

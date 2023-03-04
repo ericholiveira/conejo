@@ -1,35 +1,35 @@
-import { ConfigureSAML } from '@/components/interfaces/SAML';
-import { TeamTab } from '@/components/interfaces/Team';
-import { Error, Loading } from '@/components/ui';
-import { Card } from '@/components/ui';
-import useSAMLConfig from 'hooks/useSAMLConfig';
-import useTeam from 'hooks/useTeam';
-import { GetServerSidePropsContext } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { Button } from 'react-daisyui';
-import type { NextPageWithLayout } from 'types';
+import { ConfigureSAML } from '@/components/interfaces/SAML'
+import { TeamTab } from '@/components/interfaces/Team'
+import { Error, Loading } from '@/components/ui'
+import { Card } from '@/components/ui'
+import useSAMLConfig from 'hooks/useSAMLConfig'
+import useTeam from 'hooks/useTeam'
+import { GetServerSidePropsContext } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { Button } from 'react-daisyui'
+import type { NextPageWithLayout } from 'types'
 
 const TeamSSO: NextPageWithLayout = () => {
-  const { t } = useTranslation('common');
-  const router = useRouter();
-  const { slug } = router.query as { slug: string };
+  const { t } = useTranslation('common')
+  const router = useRouter()
+  const { slug } = router.query as { slug: string }
 
-  const [visible, setVisible] = useState(false);
-  const { isLoading, isError, team } = useTeam(slug);
-  const { samlConfig } = useSAMLConfig(slug);
+  const [visible, setVisible] = useState(false)
+  const { isLoading, isError, team } = useTeam(slug)
+  const { samlConfig } = useSAMLConfig(slug)
 
   if (isLoading || !team) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
-  const connectionExists = samlConfig && 'idpMetadata' in samlConfig.config;
+  const connectionExists = samlConfig && 'idpMetadata' in samlConfig.config
 
   return (
     <>
@@ -77,8 +77,8 @@ const TeamSSO: NextPageWithLayout = () => {
       </Card>
       <ConfigureSAML team={team} visible={visible} setVisible={setVisible} />
     </>
-  );
-};
+  )
+}
 
 export async function getServerSideProps({
   locale,
@@ -87,7 +87,7 @@ export async function getServerSideProps({
     props: {
       ...(locale ? await serverSideTranslations(locale, ['common']) : {}),
     },
-  };
+  }
 }
 
-export default TeamSSO;
+export default TeamSSO

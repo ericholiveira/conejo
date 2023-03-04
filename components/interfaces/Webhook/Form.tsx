@@ -1,13 +1,13 @@
-import { InputWithLabel } from '@/components/ui';
-import type { FormikConfig } from 'formik';
-import { useFormik } from 'formik';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import { Button, Modal } from 'react-daisyui';
-import type { WebookFormSchema } from 'types';
-import * as Yup from 'yup';
+import { InputWithLabel } from '@/components/ui'
+import type { FormikConfig } from 'formik'
+import { useFormik } from 'formik'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import { Button, Modal } from 'react-daisyui'
+import type { WebookFormSchema } from 'types'
+import * as Yup from 'yup'
 
-import EventTypes from './EventTypes';
+import EventTypes from './EventTypes'
 
 const Form = ({
   visible,
@@ -15,10 +15,10 @@ const Form = ({
   initialValues,
   onSubmit,
 }: {
-  visible: boolean;
-  setVisible: (visible: boolean) => void;
-  initialValues: WebookFormSchema;
-  onSubmit: FormikConfig<WebookFormSchema>['onSubmit'];
+  visible: boolean
+  setVisible: (visible: boolean) => void
+  initialValues: WebookFormSchema
+  onSubmit: FormikConfig<WebookFormSchema>['onSubmit']
 }) => {
   const formik = useFormik<WebookFormSchema>({
     validationSchema: Yup.object().shape({
@@ -29,9 +29,9 @@ const Form = ({
     initialValues,
     enableReinitialize: true,
     onSubmit,
-  });
+  })
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('common')
 
   return (
     <Modal open={visible}>
@@ -91,8 +91,8 @@ const Form = ({
             type="button"
             variant="outline"
             onClick={() => {
-              setVisible(!visible);
-              formik.resetForm();
+              setVisible(!visible)
+              formik.resetForm()
             }}
           >
             {t('close')}
@@ -100,7 +100,7 @@ const Form = ({
         </Modal.Actions>
       </form>
     </Modal>
-  );
-};
+  )
+}
 
-export default Form;
+export default Form

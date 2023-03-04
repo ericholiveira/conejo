@@ -1,21 +1,21 @@
-import React, { ReactElement } from 'react';
-import type { WebookFormSchema } from 'types';
+import React, { ReactElement } from 'react'
+import type { WebookFormSchema } from 'types'
 
 export const eventTypes = [
   'member.created',
   'member.removed',
   'invitation.created',
   'invitation.removed',
-];
+]
 
 const EventTypes = ({
   onChange,
   values,
 }: {
-  onChange: any;
-  values: WebookFormSchema['eventTypes'];
+  onChange: any
+  values: WebookFormSchema['eventTypes']
 }) => {
-  const events: ReactElement[] = [];
+  const events: ReactElement[] = []
 
   eventTypes.forEach((eventType) => {
     events.push(
@@ -30,10 +30,10 @@ const EventTypes = ({
         />
         <label className="ml-2 text-sm text-gray-900">{eventType}</label>
       </div>
-    );
-  });
+    )
+  })
 
-  return <>{events}</>;
-};
+  return <>{events}</>
+}
 
-export default EventTypes;
+export default EventTypes

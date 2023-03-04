@@ -1,32 +1,32 @@
-import { Card, Error, LetterAvatar, Loading } from '@/components/ui';
-import { availableRoles } from '@/lib/roles';
-import { isTeamAdmin } from '@/lib/teams';
-import { Team, TeamMember } from '@prisma/client';
-import axios from 'axios';
-import useTeamMembers from 'hooks/useTeamMembers';
-import { useSession } from 'next-auth/react';
-import { useTranslation } from 'next-i18next';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
+import { Card, Error, LetterAvatar, Loading } from '@/components/ui'
+import { availableRoles } from '@/lib/roles'
+import { isTeamAdmin } from '@/lib/teams'
+import { Team, TeamMember } from '@prisma/client'
+import axios from 'axios'
+import useTeamMembers from 'hooks/useTeamMembers'
+import { useSession } from 'next-auth/react'
+import { useTranslation } from 'next-i18next'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
 
 const Members = ({ team }: { team: Team }) => {
-  const { data: session } = useSession();
-  const { t } = useTranslation('common');
+  const { data: session } = useSession()
+  const { t } = useTranslation('common')
 
   const { isLoading, isError, members, mutateTeamMembers } = useTeamMembers(
     team.slug
-  );
+  )
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError || !session) {
-    return <Error />;
+    return <Error />
   }
 
   if (!members) {
-    return null;
+    return null
   }
 
   const removeTeamMember = async (member: TeamMember) => {
@@ -34,22 +34,22 @@ const Members = ({ team }: { team: Team }) => {
       data: {
         memberId: member.userId,
       },
-    });
+    })
 
-    mutateTeamMembers();
+    mutateTeamMembers()
 
-    toast.success('Deleted the member successfully.');
-  };
+    toast.success('Deleted the member successfully.')
+  }
 
-  const isAdmin = isTeamAdmin(session.user, members);
+  const isAdmin = isTeamAdmin(session.user, members)
 
   const canUpdateRole = (member: TeamMember) => {
-    return session.user.id != member.userId && isAdmin;
-  };
+    return session.user.id != member.userId && isAdmin
+  }
 
   const canRemoveMember = (member: TeamMember) => {
-    return session.user.id != member.userId && isAdmin;
-  };
+    return session.user.id != member.userId && isAdmin
+  }
 
   return (
     <Card heading="Team Members">
@@ -100,7 +100,7 @@ const Members = ({ team }: { team: Team }) => {
                         size="sm"
                         variant="outline"
                         onClick={() => {
-                          removeTeamMember(member);
+                          removeTeamMember(member)
                         }}
                       >
                         {t('remove')}
@@ -108,30 +108,30 @@ const Members = ({ team }: { team: Team }) => {
                     </td>
                   )}
                 </tr>
-              );
+              )
             })}
           </tbody>
         </table>
       </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
 const UpdateRoleDropdown = ({
   team,
   member,
 }: {
-  team: Team;
-  member: TeamMember;
+  team: Team
+  member: TeamMember
 }) => {
   const updateRole = async (member: TeamMember, role: string) => {
     await axios.patch(`/api/teams/${team.slug}/members`, {
       memberId: member.userId,
       role,
-    });
+    })
 
-    toast.success('Updated the role successfully.');
-  };
+    toast.success('Updated the role successfully.')
+  }
 
   return (
     <select
@@ -144,7 +144,7 @@ const UpdateRoleDropdown = ({
         </option>
       ))}
     </select>
-  );
-};
+  )
+}
 
-export default Members;
+export default Members

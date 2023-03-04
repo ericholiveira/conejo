@@ -1,5 +1,5 @@
-import classNames from 'classnames';
-import NextLink from 'next/link';
+import classNames from 'classnames'
+import NextLink from 'next/link'
 
 const NavItem = ({
   href,
@@ -8,13 +8,13 @@ const NavItem = ({
   active,
   onClick,
 }: {
-  href: string;
-  text: string;
-  icon: any;
-  active: boolean;
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  href: string
+  text: string
+  icon: any
+  active: boolean
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }) => {
-  const Icon = icon;
+  const Icon = icon
 
   return (
     <NextLink href={href}>
@@ -30,7 +30,7 @@ const NavItem = ({
         <span className="ml-3">{text}</span>
       </a>
     </NextLink>
-  );
-};
+  )
+}
 
-export default NavItem;
+export default NavItem

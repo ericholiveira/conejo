@@ -1,5 +1,5 @@
-import { signIn } from 'next-auth/react';
-import { Button } from 'react-daisyui';
+import { signIn } from 'next-auth/react'
+import { Button } from 'react-daisyui'
 
 const GithubButton = () => {
   return (
@@ -8,7 +8,7 @@ const GithubButton = () => {
       onClick={() => {
         signIn('github', {
           callbackUrl: '/dashboard',
-        });
+        })
       }}
     >
       <svg
@@ -28,7 +28,7 @@ const GithubButton = () => {
       </svg>
       Continue with GitHub
     </Button>
-  );
-};
+  )
+}
 
-export default GithubButton;
+export default GithubButton

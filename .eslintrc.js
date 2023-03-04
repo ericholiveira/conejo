@@ -7,7 +7,6 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
     'next/core-web-vitals',
   ],
   parser: '@typescript-eslint/parser',
@@ -21,6 +20,15 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-explicit-any': 'off',
+    semi: 'off',
+    '@typescript-eslint/member-delimiter-style': [
+      'warn',
+      {
+        multiline: { delimiter: 'none' },
+        singleline: { delimiter: 'comma', requireLast: false },
+      },
+    ],
+    '@typescript-eslint/semi': ['warn', 'never'],
   },
   settings: {
     react: {
@@ -32,4 +40,4 @@ module.exports = {
       files: ['*.js'],
     },
   ],
-};
+}

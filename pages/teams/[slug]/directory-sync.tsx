@@ -1,39 +1,39 @@
 import {
   CreateDirectory,
   Directory,
-} from '@/components/interfaces/DirectorySync';
-import { TeamTab } from '@/components/interfaces/Team';
-import { Card } from '@/components/ui';
-import { Error, Loading } from '@/components/ui';
-import useDirectory from 'hooks/useDirectory';
-import useTeam from 'hooks/useTeam';
-import { GetServerSidePropsContext } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { Button } from 'react-daisyui';
-import type { NextPageWithLayout } from 'types';
+} from '@/components/interfaces/DirectorySync'
+import { TeamTab } from '@/components/interfaces/Team'
+import { Card } from '@/components/ui'
+import { Error, Loading } from '@/components/ui'
+import useDirectory from 'hooks/useDirectory'
+import useTeam from 'hooks/useTeam'
+import { GetServerSidePropsContext } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { Button } from 'react-daisyui'
+import type { NextPageWithLayout } from 'types'
 
 const DirectorySync: NextPageWithLayout = () => {
-  const router = useRouter();
-  const { slug } = router.query as { slug: string };
+  const router = useRouter()
+  const { slug } = router.query as { slug: string }
 
-  const [visible, setVisible] = useState(false);
-  const { isLoading, isError, team } = useTeam(slug);
-  const { directories } = useDirectory(slug);
-  const { t } = useTranslation('common');
+  const [visible, setVisible] = useState(false)
+  const { isLoading, isError, team } = useTeam(slug)
+  const { directories } = useDirectory(slug)
+  const { t } = useTranslation('common')
 
   if (isLoading || !team) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   const directory =
-    directories && directories.length > 0 ? directories[0] : null;
+    directories && directories.length > 0 ? directories[0] : null
 
   return (
     <>
@@ -69,8 +69,8 @@ const DirectorySync: NextPageWithLayout = () => {
       </Card>
       <CreateDirectory visible={visible} setVisible={setVisible} team={team} />
     </>
-  );
-};
+  )
+}
 
 export async function getServerSideProps({
   locale,
@@ -79,7 +79,7 @@ export async function getServerSideProps({
     props: {
       ...(locale ? await serverSideTranslations(locale, ['common']) : {}),
     },
-  };
+  }
 }
 
-export default DirectorySync;
+export default DirectorySync

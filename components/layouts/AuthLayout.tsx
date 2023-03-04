@@ -1,15 +1,16 @@
+import Image from 'next/image'
 type Props = {
-  children: React.ReactNode;
-  heading?: string;
-  description?: string;
-};
+  children: React.ReactNode
+  heading?: string
+  description?: string
+}
 
 export default function AuthLayout({ children, heading, description }: Props) {
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
-          <img
+          <Image
             src="https://boxyhq.com/img/logo.png"
             className="mx-auto h-12 w-auto"
             alt="BoxyHQ"
@@ -24,5 +25,5 @@ export default function AuthLayout({ children, heading, description }: Props) {
         {children}
       </div>
     </div>
-  );
+  )
 }

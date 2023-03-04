@@ -1,31 +1,31 @@
-import { Card, Error, Loading } from '@/components/ui';
-import { Team } from '@prisma/client';
-import axios from 'axios';
-import useWebhooks from 'hooks/useWebhooks';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { EndpointOut } from 'svix';
+import { Card, Error, Loading } from '@/components/ui'
+import { Team } from '@prisma/client'
+import axios from 'axios'
+import useWebhooks from 'hooks/useWebhooks'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { EndpointOut } from 'svix'
 
-import EditWebhook from './EditWebhook';
+import EditWebhook from './EditWebhook'
 
 const Webhooks = ({ team }: { team: Team }) => {
-  const [visible, setVisible] = React.useState(false);
-  const [endpoint, setEndpoint] = React.useState<EndpointOut | null>(null);
+  const [visible, setVisible] = React.useState(false)
+  const [endpoint, setEndpoint] = React.useState<EndpointOut | null>(null)
 
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('common')
 
   const { isLoading, isError, webhooks, mutateWebhooks } = useWebhooks(
     team.slug
-  );
+  )
 
   if (isLoading || !webhooks) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   const deleteWebhook = async (webhook: EndpointOut) => {
@@ -33,19 +33,19 @@ const Webhooks = ({ team }: { team: Team }) => {
       data: {
         webhookId: webhook.id,
       },
-    });
+    })
 
-    const { error } = response.data;
+    const { error } = response.data
 
     if (error) {
-      toast.error(error.message);
-      return;
+      toast.error(error.message)
+      return
     }
 
-    mutateWebhooks();
+    mutateWebhooks()
 
-    toast.success(t('webhook-deleted'));
-  };
+    toast.success(t('webhook-deleted'))
+  }
 
   return (
     <>
@@ -86,8 +86,8 @@ const Webhooks = ({ team }: { team: Team }) => {
                           size="sm"
                           variant="outline"
                           onClick={() => {
-                            setEndpoint(webhook);
-                            setVisible(!visible);
+                            setEndpoint(webhook)
+                            setVisible(!visible)
                           }}
                         >
                           {t('edit')}
@@ -96,7 +96,7 @@ const Webhooks = ({ team }: { team: Team }) => {
                           size="sm"
                           variant="outline"
                           onClick={() => {
-                            deleteWebhook(webhook);
+                            deleteWebhook(webhook)
                           }}
                         >
                           {t('remove')}
@@ -104,7 +104,7 @@ const Webhooks = ({ team }: { team: Team }) => {
                       </div>
                     </td>
                   </tr>
-                );
+                )
               })}
             </tbody>
           </table>
@@ -119,7 +119,7 @@ const Webhooks = ({ team }: { team: Team }) => {
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default Webhooks;
+export default Webhooks

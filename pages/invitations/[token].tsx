@@ -1,33 +1,33 @@
-import { AuthLayout } from '@/components/layouts';
-import { Error, Loading } from '@/components/ui';
-import axios from 'axios';
-import { setCookie } from 'cookies-next';
-import useInvitation from 'hooks/useInvitation';
-import type { GetServerSidePropsContext } from 'next';
-import { useSession } from 'next-auth/react';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import type { ReactElement } from 'react';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { NextPageWithLayout } from 'types';
+import { AuthLayout } from '@/components/layouts'
+import { Error, Loading } from '@/components/ui'
+import axios from 'axios'
+import { setCookie } from 'cookies-next'
+import useInvitation from 'hooks/useInvitation'
+import type { GetServerSidePropsContext } from 'next'
+import { useSession } from 'next-auth/react'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
+import type { ReactElement } from 'react'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { NextPageWithLayout } from 'types'
 
 const AcceptTeamInvitation: NextPageWithLayout = () => {
-  const { status } = useSession();
-  const router = useRouter();
-  const { t } = useTranslation('common');
+  const { status } = useSession()
+  const router = useRouter()
+  const { t } = useTranslation('common')
 
-  const { token } = router.query;
+  const { token } = router.query
 
-  const { isLoading, isError, invitation } = useInvitation(token as string);
+  const { isLoading, isError, invitation } = useInvitation(token as string)
 
   if (isLoading || !invitation) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   const acceptInvitation = async () => {
@@ -36,19 +36,19 @@ const AcceptTeamInvitation: NextPageWithLayout = () => {
       {
         inviteToken: invitation.token,
       }
-    );
+    )
 
-    const { data, error } = response.data;
+    const { data, error } = response.data
 
     if (error) {
-      toast.error(error.message);
-      return;
+      toast.error(error.message)
+      return
     }
 
     if (data) {
-      router.push('/teams/switch');
+      router.push('/teams/switch')
     }
-  };
+  }
 
   return (
     <>
@@ -69,7 +69,7 @@ const AcceptTeamInvitation: NextPageWithLayout = () => {
                 variant="outline"
                 fullWidth
                 onClick={() => {
-                  router.push(`/auth/join`);
+                  router.push(`/auth/join`)
                 }}
               >
                 {t('create-a-new-account')}
@@ -79,7 +79,7 @@ const AcceptTeamInvitation: NextPageWithLayout = () => {
                 variant="outline"
                 fullWidth
                 onClick={() => {
-                  router.push(`/auth/login`);
+                  router.push(`/auth/login`)
                 }}
               >
                 {t('login')}
@@ -93,8 +93,8 @@ const AcceptTeamInvitation: NextPageWithLayout = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 AcceptTeamInvitation.getLayout = function getLayout(page: ReactElement) {
   return (
@@ -104,14 +104,14 @@ AcceptTeamInvitation.getLayout = function getLayout(page: ReactElement) {
     >
       {page}
     </AuthLayout>
-  );
-};
+  )
+}
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const { req, res, query, locale }: GetServerSidePropsContext = context;
-  const { token } = query;
+  const { req, res, query, locale }: GetServerSidePropsContext = context
+  const { token } = query
 
   setCookie(
     'pending-invite',
@@ -126,13 +126,13 @@ export const getServerSideProps = async (
       httpOnly: true,
       sameSite: 'lax',
     }
-  );
+  )
 
   return {
     props: {
       ...(locale ? await serverSideTranslations(locale, ['common']) : {}),
     },
-  };
-};
+  }
+}
 
-export default AcceptTeamInvitation;
+export default AcceptTeamInvitation

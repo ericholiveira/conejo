@@ -1,30 +1,30 @@
-import { TeamTab } from '@/components/interfaces/Team';
-import { CreateWebhook, Webhooks } from '@/components/interfaces/Webhook';
-import { Error, Loading } from '@/components/ui';
-import useTeam from 'hooks/useTeam';
-import { GetServerSidePropsContext } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { Button } from 'react-daisyui';
-import type { NextPageWithLayout } from 'types';
+import { TeamTab } from '@/components/interfaces/Team'
+import { CreateWebhook, Webhooks } from '@/components/interfaces/Webhook'
+import { Error, Loading } from '@/components/ui'
+import useTeam from 'hooks/useTeam'
+import { GetServerSidePropsContext } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { Button } from 'react-daisyui'
+import type { NextPageWithLayout } from 'types'
 
 const WebhookList: NextPageWithLayout = () => {
-  const router = useRouter();
-  const slug = router.query.slug as string;
-  const { t } = useTranslation('common');
+  const router = useRouter()
+  const slug = router.query.slug as string
+  const { t } = useTranslation('common')
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false)
 
-  const { isLoading, isError, team } = useTeam(slug);
+  const { isLoading, isError, team } = useTeam(slug)
 
   if (isLoading || !team) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   return (
@@ -37,7 +37,7 @@ const WebhookList: NextPageWithLayout = () => {
           color="primary"
           className="text-white"
           onClick={() => {
-            setVisible(!visible);
+            setVisible(!visible)
           }}
         >
           {t('add-webhook')}
@@ -46,8 +46,8 @@ const WebhookList: NextPageWithLayout = () => {
       <Webhooks team={team} />
       <CreateWebhook visible={visible} setVisible={setVisible} team={team} />
     </>
-  );
-};
+  )
+}
 
 export async function getServerSideProps({
   locale,
@@ -56,7 +56,7 @@ export async function getServerSideProps({
     props: {
       ...(locale ? await serverSideTranslations(locale, ['common']) : {}),
     },
-  };
+  }
 }
 
-export default WebhookList;
+export default WebhookList

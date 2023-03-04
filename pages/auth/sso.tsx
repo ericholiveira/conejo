@@ -1,48 +1,48 @@
-import { AuthLayout } from '@/components/layouts';
-import { InputWithLabel } from '@/components/ui';
-import { getAxiosError } from '@/lib/common';
-import axios from 'axios';
-import { useFormik } from 'formik';
-import { GetServerSidePropsContext } from 'next';
-import { signIn, useSession } from 'next-auth/react';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { type ReactElement, useEffect } from 'react';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { ApiResponse, NextPageWithLayout } from 'types';
-import * as Yup from 'yup';
+import { AuthLayout } from '@/components/layouts'
+import { InputWithLabel } from '@/components/ui'
+import { getAxiosError } from '@/lib/common'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import { GetServerSidePropsContext } from 'next'
+import { signIn, useSession } from 'next-auth/react'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { type ReactElement, useEffect } from 'react'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { ApiResponse, NextPageWithLayout } from 'types'
+import * as Yup from 'yup'
 
 const SSO: NextPageWithLayout = () => {
-  const { t } = useTranslation('common');
-  const { status } = useSession();
-  const router = useRouter();
+  const { t } = useTranslation('common')
+  const { status } = useSession()
+  const router = useRouter()
 
   // SSO callback has query paramters called code and state.
-  const { code, state } = router.query;
+  const { code, state } = router.query
 
   if (status === 'authenticated') {
-    router.push('/dashboard');
+    router.push('/dashboard')
   }
 
   // Handle the SAML SSO callback (ACS)
   useEffect(() => {
     if (!router.isReady) {
-      return;
+      return
     }
 
     if (!code || !state) {
-      return;
+      return
     }
 
     signIn('saml-sso', {
       code,
       state,
       redirect: false,
-    });
-  }, [router.isReady, code, state]);
+    })
+  }, [router.isReady, code, state])
 
   const formik = useFormik({
     initialValues: {
@@ -57,18 +57,18 @@ const SSO: NextPageWithLayout = () => {
           ApiResponse<{ redirect_url: string }>
         >('/api/auth/sso', {
           ...values,
-        });
+        })
 
-        const { data } = response.data;
+        const { data } = response.data
 
         if (data) {
-          window.location.href = data.redirect_url;
+          window.location.href = data.redirect_url
         }
       } catch (error: any) {
-        toast.error(getAxiosError(error));
+        toast.error(getAxiosError(error))
       }
     },
-  });
+  })
 
   return (
     <>
@@ -109,8 +109,8 @@ const SSO: NextPageWithLayout = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
 SSO.getLayout = function getLayout(page: ReactElement) {
   return (
@@ -120,15 +120,15 @@ SSO.getLayout = function getLayout(page: ReactElement) {
     >
       {page}
     </AuthLayout>
-  );
-};
+  )
+}
 
 export async function getStaticProps({ locale }: GetServerSidePropsContext) {
   return {
     props: {
       ...(locale ? await serverSideTranslations(locale, ['common']) : {}),
     },
-  };
+  }
 }
 
-export default SSO;
+export default SSO

@@ -1,20 +1,20 @@
-import { Error, Loading, Navbar, Sidebar } from '@/components/ui';
-import useTeams from 'hooks/useTeams';
-import React from 'react';
+import { Error, Loading, Navbar, Sidebar } from '@/components/ui'
+import useTeams from 'hooks/useTeams'
+import React from 'react'
 
 export default function AccountLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const { isLoading, isError, teams } = useTeams();
+  const { isLoading, isError, teams } = useTeams()
 
   if (isLoading || !teams) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   return (
@@ -31,5 +31,5 @@ export default function AccountLayout({
         </div>
       </div>
     </>
-  );
+  )
 }

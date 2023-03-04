@@ -1,5 +1,5 @@
-import { signIn } from 'next-auth/react';
-import { Button } from 'react-daisyui';
+import { signIn } from 'next-auth/react'
+import { Button } from 'react-daisyui'
 
 const GoogleButton = () => {
   return (
@@ -8,7 +8,7 @@ const GoogleButton = () => {
       onClick={() => {
         signIn('google', {
           callbackUrl: '/dashboard',
-        });
+        })
       }}
     >
       <svg
@@ -28,7 +28,7 @@ const GoogleButton = () => {
       </svg>
       Continue with Google
     </Button>
-  );
-};
+  )
+}
 
-export default GoogleButton;
+export default GoogleButton

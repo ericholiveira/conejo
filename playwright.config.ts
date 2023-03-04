@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig, devices } from '@playwright/test';
+import { PlaywrightTestConfig, devices } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
   projects: [
@@ -30,5 +30,5 @@ const config: PlaywrightTestConfig = {
     baseURL: 'http://localhost:4002',
     video: 'off',
   },
-};
-export default config;
+}
+export default config

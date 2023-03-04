@@ -1,5 +1,5 @@
 const Loading = () => {
-  return <progress className="progress w-56"></progress>;
-};
+  return <progress className="progress w-56"></progress>
+}
 
-export default Loading;
+export default Loading

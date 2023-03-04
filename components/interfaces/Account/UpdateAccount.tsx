@@ -1,21 +1,21 @@
-import { Card, InputWithLabel } from '@/components/ui';
-import { getAxiosError } from '@/lib/common';
-import { User } from '@prisma/client';
-import axios from 'axios';
-import { useFormik } from 'formik';
-import { useTranslation } from 'next-i18next';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { ApiResponse } from 'types';
-import * as Yup from 'yup';
+import { Card, InputWithLabel } from '@/components/ui'
+import { getAxiosError } from '@/lib/common'
+import { User } from '@prisma/client'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import { useTranslation } from 'next-i18next'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { ApiResponse } from 'types'
+import * as Yup from 'yup'
 
 const schema = Yup.object().shape({
   name: Yup.string().required(),
   email: Yup.string().required(),
-});
+})
 
 const UpdateAccount = ({ user }: { user: User }) => {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('common')
 
   const formik = useFormik({
     initialValues: {
@@ -27,14 +27,14 @@ const UpdateAccount = ({ user }: { user: User }) => {
       try {
         await axios.put<ApiResponse<User>>('/api/users', {
           ...values,
-        });
+        })
 
-        toast.success(t('successfully-updated'));
+        toast.success(t('successfully-updated'))
       } catch (error) {
-        toast.error(getAxiosError(error));
+        toast.error(getAxiosError(error))
       }
     },
-  });
+  })
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -76,7 +76,7 @@ const UpdateAccount = ({ user }: { user: User }) => {
         </Card.Footer>
       </Card>
     </form>
-  );
-};
+  )
+}
 
-export default UpdateAccount;
+export default UpdateAccount

@@ -1,12 +1,12 @@
-import nodemailer from 'nodemailer';
+import nodemailer from 'nodemailer'
 
-import env from '../env';
+import env from '../env'
 
 interface EmailData {
-  to: string;
-  subject: string;
-  html: string;
-  text?: string;
+  to: string
+  subject: string
+  html: string
+  text?: string
 }
 
 export const sendEmail = async (data: EmailData) => {
@@ -18,11 +18,11 @@ export const sendEmail = async (data: EmailData) => {
       user: env.smtp.user,
       pass: env.smtp.password,
     },
-  });
+  })
 
   const emailDefaults = {
     from: env.smtp.from,
-  };
+  }
 
-  await transporter.sendMail({ ...emailDefaults, ...data });
-};
+  await transporter.sendMail({ ...emailDefaults, ...data })
+}

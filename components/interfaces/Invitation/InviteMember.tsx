@@ -1,27 +1,27 @@
-import { getAxiosError } from '@/lib/common';
-import { availableRoles } from '@/lib/roles';
-import type { Invitation, Team } from '@prisma/client';
-import axios from 'axios';
-import { useFormik } from 'formik';
-import useInvitations from 'hooks/useInvitations';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import { Button, Input, Modal } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { ApiResponse } from 'types';
-import * as Yup from 'yup';
+import { getAxiosError } from '@/lib/common'
+import { availableRoles } from '@/lib/roles'
+import type { Invitation, Team } from '@prisma/client'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import useInvitations from 'hooks/useInvitations'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import { Button, Input, Modal } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { ApiResponse } from 'types'
+import * as Yup from 'yup'
 
 const InviteMember = ({
   visible,
   setVisible,
   team,
 }: {
-  visible: boolean;
-  setVisible: (visible: boolean) => void;
-  team: Team;
+  visible: boolean
+  setVisible: (visible: boolean) => void
+  team: Team
 }) => {
-  const { mutateInvitation } = useInvitations(team.slug);
-  const { t } = useTranslation('common');
+  const { mutateInvitation } = useInvitations(team.slug)
+  const { t } = useTranslation('common')
 
   const formik = useFormik({
     initialValues: {
@@ -41,18 +41,18 @@ const InviteMember = ({
           {
             ...values,
           }
-        );
+        )
 
-        toast.success(t('invitation-sent'));
+        toast.success(t('invitation-sent'))
 
-        mutateInvitation();
-        setVisible(false);
-        formik.resetForm();
+        mutateInvitation()
+        setVisible(false)
+        formik.resetForm()
       } catch (error: any) {
-        toast.error(getAxiosError(error));
+        toast.error(getAxiosError(error))
       }
     },
-  });
+  })
 
   return (
     <Modal open={visible}>
@@ -100,7 +100,7 @@ const InviteMember = ({
             type="button"
             variant="outline"
             onClick={() => {
-              setVisible(!visible);
+              setVisible(!visible)
             }}
           >
             {t('close')}
@@ -108,7 +108,7 @@ const InviteMember = ({
         </Modal.Actions>
       </form>
     </Modal>
-  );
-};
+  )
+}
 
-export default InviteMember;
+export default InviteMember

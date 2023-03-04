@@ -1,27 +1,27 @@
-import { TeamTab } from '@/components/interfaces/Team';
-import { Card } from '@/components/ui';
-import { Error, Loading } from '@/components/ui';
-import useTeam from 'hooks/useTeam';
-import { GetServerSidePropsContext } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { Badge } from 'react-daisyui';
-import type { NextPageWithLayout } from 'types';
+import { TeamTab } from '@/components/interfaces/Team'
+import { Card } from '@/components/ui'
+import { Error, Loading } from '@/components/ui'
+import useTeam from 'hooks/useTeam'
+import { GetServerSidePropsContext } from 'next'
+import { useTranslation } from 'next-i18next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useRouter } from 'next/router'
+import { Badge } from 'react-daisyui'
+import type { NextPageWithLayout } from 'types'
 
 const AuditLogs: NextPageWithLayout = () => {
-  const router = useRouter();
-  const { slug } = router.query;
-  const { t } = useTranslation('common');
+  const router = useRouter()
+  const { slug } = router.query
+  const { t } = useTranslation('common')
 
-  const { isLoading, isError, team } = useTeam(slug as string);
+  const { isLoading, isError, team } = useTeam(slug as string)
 
   if (isLoading || !team) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   return (
@@ -37,8 +37,8 @@ const AuditLogs: NextPageWithLayout = () => {
         </Card.Body>
       </Card>
     </>
-  );
-};
+  )
+}
 
 export async function getServerSideProps({
   locale,
@@ -47,7 +47,7 @@ export async function getServerSideProps({
     props: {
       ...(locale ? await serverSideTranslations(locale, ['common']) : {}),
     },
-  };
+  }
 }
 
-export default AuditLogs;
+export default AuditLogs

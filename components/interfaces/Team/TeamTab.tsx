@@ -1,10 +1,10 @@
-import { teamNavigations } from '@/lib/teams';
-import type { Team } from '@prisma/client';
-import classNames from 'classnames';
-import Link from 'next/link';
+import { teamNavigations } from '@/lib/teams'
+import type { Team } from '@prisma/client'
+import classNames from 'classnames'
+import Link from 'next/link'
 
-const TeamTab = ({ activeTab, team }: { activeTab: string; team: Team }) => {
-  const navigations = teamNavigations(team.slug, activeTab);
+const TeamTab = ({ activeTab, team }: { activeTab: string, team: Team }) => {
+  const navigations = teamNavigations(team.slug, activeTab)
 
   return (
     <div className="mb-5">
@@ -26,11 +26,11 @@ const TeamTab = ({ activeTab, team }: { activeTab: string; team: Team }) => {
                 {menu.name}
               </a>
             </Link>
-          );
+          )
         })}
       </nav>
     </div>
-  );
-};
+  )
+}
 
-export default TeamTab;
+export default TeamTab

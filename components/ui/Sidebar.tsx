@@ -4,22 +4,22 @@ import {
   KeyIcon,
   UserIcon,
   UsersIcon,
-} from '@heroicons/react/24/solid';
-import useTeam from 'hooks/useTeam';
-import { signOut } from 'next-auth/react';
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
+} from '@heroicons/react/24/solid'
+import useTeam from 'hooks/useTeam'
+import { signOut } from 'next-auth/react'
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 
-import TeamNav from '../interfaces/Team/TeamNav';
-import NavItem from './NavItem';
+import TeamNav from '../interfaces/Team/TeamNav'
+import NavItem from './NavItem'
 
 export default function Sidebar() {
-  const router = useRouter();
-  const { t } = useTranslation('common');
+  const router = useRouter()
+  const { t } = useTranslation('common')
 
-  const slug = router.query.slug as string;
+  const slug = router.query.slug as string
 
-  const { team } = useTeam(slug);
+  const { team } = useTeam(slug)
 
   return (
     <>
@@ -115,5 +115,5 @@ export default function Sidebar() {
         id="sidebarBackdrop"
       />
     </>
-  );
+  )
 }

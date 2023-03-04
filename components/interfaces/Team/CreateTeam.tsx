@@ -1,24 +1,24 @@
-import { getAxiosError } from '@/lib/common';
-import type { Team } from '@prisma/client';
-import axios from 'axios';
-import { useFormik } from 'formik';
-import useTeams from 'hooks/useTeams';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import { Button, Input, Modal } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { ApiResponse } from 'types';
-import * as Yup from 'yup';
+import { getAxiosError } from '@/lib/common'
+import type { Team } from '@prisma/client'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import useTeams from 'hooks/useTeams'
+import { useTranslation } from 'next-i18next'
+import React from 'react'
+import { Button, Input, Modal } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { ApiResponse } from 'types'
+import * as Yup from 'yup'
 
 const CreateTeam = ({
   visible,
   setVisible,
 }: {
-  visible: boolean;
-  setVisible: (visible: boolean) => void;
+  visible: boolean
+  setVisible: (visible: boolean) => void
 }) => {
-  const { t } = useTranslation('common');
-  const { mutateTeams } = useTeams();
+  const { t } = useTranslation('common')
+  const { mutateTeams } = useTeams()
 
   const formik = useFormik({
     initialValues: {
@@ -31,21 +31,21 @@ const CreateTeam = ({
       try {
         const response = await axios.post<ApiResponse<Team>>('/api/teams/', {
           ...values,
-        });
+        })
 
-        const { data: teamCreated } = response.data;
+        const { data: teamCreated } = response.data
 
         if (teamCreated) {
-          toast.success(t('team-created'));
-          mutateTeams();
-          formik.resetForm();
-          setVisible(false);
+          toast.success(t('team-created'))
+          mutateTeams()
+          formik.resetForm()
+          setVisible(false)
         }
       } catch (error: any) {
-        toast.error(getAxiosError(error));
+        toast.error(getAxiosError(error))
       }
     },
-  });
+  })
 
   return (
     <Modal open={visible}>
@@ -78,7 +78,7 @@ const CreateTeam = ({
             type="button"
             variant="outline"
             onClick={() => {
-              setVisible(!visible);
+              setVisible(!visible)
             }}
           >
             {t('close')}
@@ -86,7 +86,7 @@ const CreateTeam = ({
         </Modal.Actions>
       </form>
     </Modal>
-  );
-};
+  )
+}
 
-export default CreateTeam;
+export default CreateTeam

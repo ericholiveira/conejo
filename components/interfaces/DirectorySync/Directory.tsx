@@ -1,25 +1,25 @@
-import { Error, Loading } from '@/components/ui';
-import { Team } from '@prisma/client';
-import useDirectory from 'hooks/useDirectory';
-import { useTranslation } from 'next-i18next';
+import { Error, Loading } from '@/components/ui'
+import { Team } from '@prisma/client'
+import useDirectory from 'hooks/useDirectory'
+import { useTranslation } from 'next-i18next'
 
 const Directory = ({ team }: { team: Team }) => {
-  const { t } = useTranslation('common');
-  const { isLoading, isError, directories } = useDirectory(team.slug);
+  const { t } = useTranslation('common')
+  const { isLoading, isError, directories } = useDirectory(team.slug)
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading />
   }
 
   if (isError) {
-    return <Error />;
+    return <Error />
   }
 
   if (directories && directories.length === 0) {
-    return null;
+    return null
   }
 
-  const directory = directories[0];
+  const directory = directories[0]
 
   return (
     <div className="flex flex-col justify-between space-y-2 border-t text-sm">
@@ -45,7 +45,7 @@ const Directory = ({ team }: { team: Team }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Directory;
+export default Directory

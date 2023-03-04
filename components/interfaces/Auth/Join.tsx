@@ -1,18 +1,18 @@
-import { InputWithLabel } from '@/components/ui';
-import { getAxiosError } from '@/lib/common';
-import type { User } from '@prisma/client';
-import axios from 'axios';
-import { useFormik } from 'formik';
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { ApiResponse } from 'types';
-import * as Yup from 'yup';
+import { InputWithLabel } from '@/components/ui'
+import { getAxiosError } from '@/lib/common'
+import type { User } from '@prisma/client'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { ApiResponse } from 'types'
+import * as Yup from 'yup'
 
 const Join = () => {
-  const router = useRouter();
-  const { t } = useTranslation('common');
+  const router = useRouter()
+  const { t } = useTranslation('common')
 
   const formik = useFormik({
     initialValues: {
@@ -31,16 +31,16 @@ const Join = () => {
       try {
         await axios.post<ApiResponse<User>>('/api/auth/join', {
           ...values,
-        });
+        })
 
-        formik.resetForm();
-        toast.success(t('successfully-joined'));
-        router.push('/auth/login');
+        formik.resetForm()
+        toast.success(t('successfully-joined'))
+        router.push('/auth/login')
       } catch (error: any) {
-        toast.error(getAxiosError(error));
+        toast.error(getAxiosError(error))
       }
     },
-  });
+  })
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -95,7 +95,7 @@ const Join = () => {
         <p className="text-sm">{t('sign-up-message')}</p>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default Join;
+export default Join

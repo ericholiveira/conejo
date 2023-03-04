@@ -1,4 +1,4 @@
-import { Role } from '@prisma/client';
+import { Role } from '@prisma/client'
 
 export const availableRoles = [
   {
@@ -13,4 +13,4 @@ export const availableRoles = [
     id: Role.OWNER,
     name: 'Owner',
   },
-];
+]

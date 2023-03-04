@@ -1,17 +1,17 @@
-import { Card, InputWithLabel } from '@/components/ui';
-import { getAxiosError } from '@/lib/common';
-import { Team } from '@prisma/client';
-import axios from 'axios';
-import { useFormik } from 'formik';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { Button } from 'react-daisyui';
-import toast from 'react-hot-toast';
-import type { ApiResponse } from 'types';
-import * as Yup from 'yup';
+import { Card, InputWithLabel } from '@/components/ui'
+import { getAxiosError } from '@/lib/common'
+import { Team } from '@prisma/client'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import { useRouter } from 'next/router'
+import React from 'react'
+import { Button } from 'react-daisyui'
+import toast from 'react-hot-toast'
+import type { ApiResponse } from 'types'
+import * as Yup from 'yup'
 
 const TeamSettings = ({ team }: { team: Team }) => {
-  const router = useRouter();
+  const router = useRouter()
 
   const formik = useFormik({
     initialValues: {
@@ -32,19 +32,19 @@ const TeamSettings = ({ team }: { team: Team }) => {
           {
             ...values,
           }
-        );
+        )
 
-        const { data: teamUpdated } = response.data;
+        const { data: teamUpdated } = response.data
 
         if (teamUpdated) {
-          toast.success('Successfully updated!');
-          return router.push(`/teams/${teamUpdated.slug}/settings`);
+          toast.success('Successfully updated!')
+          return router.push(`/teams/${teamUpdated.slug}/settings`)
         }
       } catch (error: any) {
-        toast.error(getAxiosError(error));
+        toast.error(getAxiosError(error))
       }
     },
-  });
+  })
 
   return (
     <>
@@ -95,7 +95,7 @@ const TeamSettings = ({ team }: { team: Team }) => {
         </Card>
       </form>
     </>
-  );
-};
+  )
+}
 
-export default TeamSettings;
+export default TeamSettings
