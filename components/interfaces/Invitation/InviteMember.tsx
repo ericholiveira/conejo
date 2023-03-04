@@ -69,7 +69,7 @@ const InviteMember = ({
                 className="flex-grow"
                 onChange={formik.handleChange}
                 value={formik.values.email}
-                placeholder="jackson@boxyhq.com"
+                placeholder="jhondoe@example.com"
                 required
               />
               <select
