@@ -52,68 +52,65 @@ const Members = ({ team }: { team: Team }) => {
   }
 
   return (
-    <Card heading="Team Members">
-      <Card.Body>
-        <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-          <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                {t('name')}
-              </th>
-              <th scope="col" className="px-6 py-3">
-                {t('email')}
-              </th>
-              <th scope="col" className="px-6 py-3">
-                {t('role')}
-              </th>
-              {isAdmin && (
+    <div className="overflow-x-auto">
+      <table className="table table-zebra w-full">
+        {/* head*/}
+        <thead>
+          <tr>
+            <th>{t('name')}</th>
+            <th>{t('email')}</th>
+            <th>{t('role')}</th>
+            {isAdmin && (
                 <th scope="col" className="px-6 py-3">
                   {t('action')}
                 </th>
               )}
+          </tr>
+        </thead>
+        <tbody>
+        {members?.map((member) => {
+          return (
+            <tr
+              key={member.id}
+              className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+            >
+              <td>
+              <div className="flex items-center space-x-3">
+                <div className="avatar">
+                  <div className="mask mask-squircle w-8 h-8">
+                    <LetterAvatar name={member.user.name} />
+                  </div>
+                </div>
+                <div>
+                  <span>{member.user.name}</span>
+                </div>
+              </div>
+              </td>
+              <td>{member.user.email}</td>
+              <td>
+                {canUpdateRole(member) ? (
+                  <UpdateRoleDropdown team={team} member={member} />
+                ) : (
+                  <span>{member.role}</span>
+                )}
+              </td>
+              {canRemoveMember(member) && (
+                <td>
+                  <Button
+                    onClick={() => {
+                      removeTeamMember(member)
+                    }}
+                  >
+                    {t('remove')}
+                  </Button>
+                </td>
+              )}
             </tr>
-          </thead>
-          <tbody>
-            {members.map((member) => {
-              return (
-                <tr
-                  key={member.id}
-                  className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
-                >
-                  <td className="px-6 py-3">
-                    <div className="flex items-center justify-start space-x-2">
-                      <LetterAvatar name={member.user.name} />
-                      <span>{member.user.name}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-3">{member.user.email}</td>
-                  <td className="px-6 py-3">
-                    {canUpdateRole(member) ? (
-                      <UpdateRoleDropdown team={team} member={member} />
-                    ) : (
-                      <span>{member.role}</span>
-                    )}
-                  </td>
-                  {canRemoveMember(member) && (
-                    <td className="px-6 py-3">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => {
-                          removeTeamMember(member)
-                        }}
-                      >
-                        {t('remove')}
-                      </Button>
-                    </td>
-                  )}
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </Card.Body>
-    </Card>
+          )
+        })}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
