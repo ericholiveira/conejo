@@ -4,6 +4,7 @@ import {
   KeyIcon,
   UserIcon,
   UsersIcon,
+  CircleStackIcon
 } from '@heroicons/react/24/solid'
 import useTeam from 'hooks/useTeam'
 import { signOut } from 'next-auth/react'
@@ -29,6 +30,14 @@ export default function Sidebar() {
             text="Home"
             icon={HomeIcon}
             active={router.pathname === '/home'}
+          />
+        </li>
+        <li>
+          <NavItem
+            href="/connections"
+            text="Connections"
+            icon={CircleStackIcon}
+            active={router.pathname === '/connections'}
           />
         </li>
         <li>

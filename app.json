@@ -40,6 +40,10 @@
     "SVIX_API_KEY": {
       "description": "SVIX API key.",
       "required": false
+    },
+    "APP_NAME":{
+      "description": "App name.",
+      "required": true
     }
   },
   "success_url": "/"

@@ -107,3 +107,13 @@ model Invitation {
 
   @@unique([teamId, email])
 }
+model DBConnection {
+  id        String   @id
+  username  String
+  password  String
+  host      String
+  port      Int   
+  database  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
