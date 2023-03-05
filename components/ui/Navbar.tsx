@@ -1,9 +1,9 @@
 
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 import ThemeChanger from './ThemeChanger'
-import Link from 'next/link';
+import Link from 'next/link'
 export default function Navbar() {
-  const { t } = useTranslation('common');
+  const { t } = useTranslation('common')
   return (
       <div className="container w-full">
         <div className="navbar bg-base-100">
@@ -27,5 +27,5 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    );
+    )
 }

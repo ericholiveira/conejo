@@ -1,11 +1,11 @@
-import { GetServerSidePropsContext } from 'next';
+import { GetServerSidePropsContext } from 'next'
 
-import type { NextPageWithLayout } from 'types';
-import { getSession } from 'next-auth/react';
+import type { NextPageWithLayout } from 'types'
+import { getSession } from 'next-auth/react'
 
 const Home: NextPageWithLayout = () => {
-  return (<></>);
-};
+  return (<></>)
+}
 
 export async function getServerSideProps(context:GetServerSidePropsContext) {
   const session = await getSession(context)
@@ -19,4 +19,4 @@ export async function getServerSideProps(context:GetServerSidePropsContext) {
   }
 }
 
-export default Home;
+export default Home

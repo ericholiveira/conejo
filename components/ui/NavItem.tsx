@@ -17,10 +17,10 @@ const NavItem = ({
   const Icon = icon
 
   return (
-    <NextLink href={href}>
-      <a onClick={onClick} href="/home" className={classNames(
-          active ? 'bordered' : '',
-        )}><Icon className="h-5 w-5" />{text}</a>
+    <NextLink href={href}  className={classNames(
+      active ? 'bordered' : '',
+    )}>
+      <span onClick={onClick}><Icon className="h-5 w-5" />{text}</span>
     </NextLink>
   )
 }

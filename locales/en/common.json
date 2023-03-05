@@ -18,6 +18,8 @@
   "change-password": "Change Password",
   "already-have-an-account": "Already have an account?",
   "continue-with-saml-sso": "Continue with SAML SSO",
+  "sign-in-with-saml-sso": "Sign in with SAML SSO",
+  "your-id-slug":"Your ID is the slug after the hostname.",
   "send-magic-link": "Send Magic Link",
   "start-trial":"Start your 30-day free trial",
   "magic-link-description":"We’ll email you a magic link for a password-free sign in.",

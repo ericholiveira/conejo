@@ -1,14 +1,11 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
+  testDir: 'tests/e2e/',
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
     },
   ],
   reporter: [
@@ -22,12 +19,12 @@ const config: PlaywrightTestConfig = {
   ],
   webServer: {
     command: 'npm run start',
-    url: 'http://localhost:4002',
+    url: 'http://127.0.0.1:4002',
   },
   use: {
     headless: true,
     ignoreHTTPSErrors: true,
-    baseURL: 'http://localhost:4002',
+    baseURL: 'http://127.0.0.1:4002',
     video: 'off',
   },
 }

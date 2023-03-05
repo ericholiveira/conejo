@@ -7,7 +7,6 @@ import {
 } from '@heroicons/react/24/solid'
 import useTeam from 'hooks/useTeam'
 import { signOut } from 'next-auth/react'
-import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
 import TeamNav from '../interfaces/Team/TeamNav'
@@ -16,7 +15,6 @@ import ThemeChanger from './ThemeChanger'
 
 export default function Sidebar() {
   const router = useRouter()
-  const { t } = useTranslation('common')
 
   const slug = router.query.slug as string
 
@@ -73,7 +71,11 @@ export default function Sidebar() {
             href="/"
             text="Logout"
             icon={ArrowLeftOnRectangleIcon}
-            onClick={() => signOut()}
+            onClick={async () => {
+              localStorage.clear()
+              await signOut()
+              router.push("/auth/login")
+            }}
             active={false}
           />
         </li>

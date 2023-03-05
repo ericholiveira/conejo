@@ -130,14 +130,18 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ user, account, profile }) {
       if (
-        account.provider === 'email' ||
-        account.provider === 'credentials' ||
-        account.provider === 'saml-sso'
+        account?.provider === 'email' ||
+        account?.provider === 'credentials' ||
+        account?.provider === 'saml-sso'
       ) {
         return true
       }
 
-      if (account.provider != 'github' && account.provider != 'google') {
+      if (
+        account &&
+        account.provider != 'github' &&
+        account.provider != 'google'
+      ) {
         return false
       }
 
@@ -156,11 +160,12 @@ export const authOptions: NextAuthOptions = {
       if (!existingUser) {
         // Create user account if it doesn't exist
         const newUser = await createUser({
-          name: `${profile.name}`,
-          email: `${profile.email}`,
+          name: `${profile?.name}`,
+          email: `${profile?.email}`,
         })
-
-        await linkAccount(newUser, account)
+        if (account) {
+          await linkAccount(newUser, account)
+        }
       } else {
         // User account already exists, check if it's linked to the account
         const linkedAccount = await getAccount({ userId: existingUser.id })
@@ -168,8 +173,9 @@ export const authOptions: NextAuthOptions = {
         if (linkedAccount) {
           return true
         }
-
-        await linkAccount(existingUser, account)
+        if (account) {
+          await linkAccount(existingUser, account)
+        }
       }
 
       return true

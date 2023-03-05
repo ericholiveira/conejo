@@ -1,4 +1,4 @@
-import { Card, Error, LetterAvatar, Loading } from '@/components/ui'
+import { Error, LetterAvatar, Loading } from '@/components/ui'
 import { availableRoles } from '@/lib/roles'
 import { isTeamAdmin } from '@/lib/teams'
 import { Team, TeamMember } from '@prisma/client'

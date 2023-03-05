@@ -45,7 +45,7 @@ const UpdateAccount = ({ user }: { user: User }) => {
               type="text"
               label="Name"
               name="name"
-              placeholder={t('your-name')}
+              placeholder={t('your-name').toString()}
               value={formik.values.name}
               error={formik.touched.name ? formik.errors.name : undefined}
               onChange={formik.handleChange}
@@ -54,7 +54,7 @@ const UpdateAccount = ({ user }: { user: User }) => {
               type="email"
               label="Email"
               name="email"
-              placeholder={t('your-email')}
+              placeholder={t('your-email').toString()}
               value={formik.values.email}
               error={formik.touched.email ? formik.errors.email : undefined}
               onChange={formik.handleChange}
