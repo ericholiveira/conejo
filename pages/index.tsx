@@ -1,31 +1,22 @@
 import { GetServerSidePropsContext } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import type { ReactElement } from 'react';
-import type { NextPageWithLayout } from 'types';
-import Navbar from '../components/ui/Navbar';
 
+import type { NextPageWithLayout } from 'types';
+import { getSession } from 'next-auth/react';
 
 const Home: NextPageWithLayout = () => {
-  const { t } = useTranslation('common');
-  return (
-    <div className="container">
-      <Navbar/>
-    </div>
-  );
+  return (<></>);
 };
 
-export async function getStaticProps({ locale }: GetServerSidePropsContext) {
+export async function getServerSideProps(context:GetServerSidePropsContext) {
+  const session = await getSession(context)
+  const destination = session? '/dashboard':'/auth/login'
   return {
-    props: {
-      ...(locale ? await serverSideTranslations(locale, ['common']) : {}),
-      // Will be passed to the page component as props
+    redirect: {
+      destination,
+      permanent: false,
     },
-  };
+    props:{},
+  }
 }
-
-Home.getLayout = function getLayout(page: ReactElement) {
-  return <>{page}</>;
-};
 
 export default Home;

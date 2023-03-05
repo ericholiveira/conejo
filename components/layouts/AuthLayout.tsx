@@ -1,4 +1,3 @@
-import Image from 'next/image'
 type Props = {
   children: React.ReactNode
   heading?: string
