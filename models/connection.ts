@@ -14,15 +14,15 @@ export const createDBConnection = async (param: {
   })
 }
 
-export const getDBConnection = ({ id }: { id: string }) => {
+export const getDBConnection = (param: { id: string }) => {
   return prisma.dBConnection.findUnique({
-    where: { id },
+    where: { id: param.id },
   })
 }
 
-export const deleteDBConnection = ({ id }: { id: string }) => {
+export const deleteDBConnection = (param: { id: string }) => {
   return prisma.dBConnection.delete({
-    where: { id },
+    where: { id: param.id },
   })
 }
 
