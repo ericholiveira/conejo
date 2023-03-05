@@ -80,5 +80,5 @@
   "create-webhook": "Create Webhook",
   "webhook-create-desc": "Create webhook to listen to events from app.",
   "edit-webhook-endpoint": "Edit Webhook Endpoint",
-  "events-to-send": "Events to send",
+  "events-to-send": "Events to send"
 }

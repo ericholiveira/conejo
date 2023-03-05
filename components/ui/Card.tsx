@@ -7,7 +7,7 @@ const Card = (props: { heading: string, children: React.ReactNode }) => {
     <div className="card">
       <div className="card-body">
         <h2 className="card-title">{heading}</h2>
-        <p>{children}</p>
+        <span>{children}</span>
       </div>
     </div>
   )
