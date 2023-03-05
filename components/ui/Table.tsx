@@ -51,7 +51,7 @@ type TrProps = {
 const Tr: React.FC<TrProps> = ({ children, onClick, style }) => {
   return (
     <tr
-      className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
+      className="border-b bg-base-200"
       onClick={onClick}
       style={style}
     >

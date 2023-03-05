@@ -7,7 +7,7 @@ const GithubButton = () => {
       className="btn-outline w-full"
       onClick={() => {
         signIn('github', {
-          callbackUrl: '/dashboard',
+          callbackUrl: '/home',
         })
       }}
     >

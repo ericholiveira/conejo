@@ -24,7 +24,7 @@ const SSO: NextPageWithLayout = () => {
   const { code, state } = router.query
 
   if (status === 'authenticated') {
-    router.push('/dashboard')
+    router.push('/home')
   }
 
   // Handle the SAML SSO callback (ACS)

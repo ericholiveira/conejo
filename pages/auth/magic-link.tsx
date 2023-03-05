@@ -69,7 +69,7 @@ const Login: NextPageWithLayout<
               name="email"
               placeholder="jhondoe@email.com"
               value={formik.values.email}
-              descriptionText="We’ll email you a magic link for a password-free sign in."
+              descriptionText={t("magic-link-description").toString()}
               error={formik.touched.email ? formik.errors.email : undefined}
               onChange={formik.handleChange}
             />
@@ -111,8 +111,9 @@ const Login: NextPageWithLayout<
 }
 
 Login.getLayout = function getLayout(page: ReactElement) {
+  const { t } = useTranslation('common')
   return (
-    <AuthLayout heading="Welcome back" description="Log in to your account">
+    <AuthLayout  heading={t("welcome-back").toString()} description={t("login-to-account").toString()}>
       {page}
     </AuthLayout>
   )

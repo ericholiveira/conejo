@@ -11,6 +11,6 @@ export default function ThemeChanger() {
   return (
   <select data-choose-theme>
     <option value="">Choose Theme</option>
-    {themes.map(t=>(<option value={t}>{t}</option>))}
+    {themes.map(t=>(<option key={t} value={t}>{t}</option>))}
   </select>)
 }

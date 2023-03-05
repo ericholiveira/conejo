@@ -18,7 +18,7 @@ const NavItem = ({
 
   return (
     <NextLink href={href}>
-      <a onClick={onClick} href="/dashboard" className={classNames(
+      <a onClick={onClick} href="/home" className={classNames(
           active ? 'bordered' : '',
         )}><Icon className="h-5 w-5" />{text}</a>
     </NextLink>

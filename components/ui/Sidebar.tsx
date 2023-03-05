@@ -24,21 +24,13 @@ export default function Sidebar() {
 
   return (
     <>
-      <ul className="menu bg-base-100 w-56  ">
-      <li>
-        <NavItem
-          href="/"
-          text={t('app-name')}
-          icon={HomeIcon}
-          active={router.pathname === '/dashboard'}
-        />
-      </li>
+      <ul className="menu bg-base-100 w-56">
         <li>
           <NavItem
-            href="/dashboard"
-            text="Dashboard"
+            href="/home"
+            text="Home"
             icon={HomeIcon}
-            active={router.pathname === '/dashboard'}
+            active={router.pathname === '/home'}
           />
         </li>
         <li>

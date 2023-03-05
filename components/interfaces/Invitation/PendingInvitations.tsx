@@ -73,7 +73,7 @@ const PendingInvitations = ({ team }: { team: Team }) => {
               return (
                 <tr
                   key={invitation.token}
-                  className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+                  className="border-b bg-base-200 hover:bg-gray-50"
                 >
                   <td className="px-6 py-3" colSpan={2}>
                     <div className="flex items-center justify-start space-x-2">

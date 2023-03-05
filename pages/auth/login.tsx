@@ -128,8 +128,9 @@ const Login: NextPageWithLayout<
 }
 
 Login.getLayout = function getLayout(page: ReactElement) {
+  const { t } = useTranslation('common')
   return (
-    <AuthLayout heading="Welcome back" description="Log in to your account">
+    <AuthLayout heading={t("welcome-back").toString()} description={t("login-to-account").toString()}>
       {page}
     </AuthLayout>
   )

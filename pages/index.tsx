@@ -9,7 +9,7 @@ const Home: NextPageWithLayout = () => {
 
 export async function getServerSideProps(context:GetServerSidePropsContext) {
   const session = await getSession(context)
-  const destination = session? '/dashboard':'/auth/login'
+  const destination = session? '/home':'/auth/login'
   return {
     redirect: {
       destination,

@@ -19,11 +19,11 @@ export default function AccountLayout({
 
   return (
     <>
-      <div className="flex overflow-hidden  w-full">
+      <div className="flex overflow-hidden w-full bg-base-200">
         <Sidebar />
-        <div className="relative h-full w-full overflow-y-auto">
+        <div className="relative h-full w-full overflow-y-auto mx-5 my-5">
           <main>
-            <div className="flex h-screen w-full justify-center bg-base-200">
+            <div className="flex h-screen w-full justify-center">
               <div className="w-full">{children}</div>
             </div>
           </main>

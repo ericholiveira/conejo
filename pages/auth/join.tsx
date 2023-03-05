@@ -54,10 +54,11 @@ const Signup: NextPageWithLayout<inferSSRProps<typeof getServerSideProps>> = ({
 }
 
 Signup.getLayout = function getLayout(page: ReactElement) {
+  const { t } = useTranslation('common')
   return (
     <AuthLayout
-      heading="Create an account"
-      description="Start your 30-day free trial"
+      heading={t('create-account').toString()}
+      description={t('start-trial').toString()}
     >
       {page}
     </AuthLayout>

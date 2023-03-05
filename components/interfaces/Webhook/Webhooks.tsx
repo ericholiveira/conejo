@@ -73,7 +73,7 @@ const Webhooks = ({ team }: { team: Team }) => {
                 return (
                   <tr
                     key={webhook.id}
-                    className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+                    className="border-b bg-base-200"
                   >
                     <td className="px-6 py-3">{webhook.description}</td>
                     <td className="px-6 py-3">{webhook.url}</td>

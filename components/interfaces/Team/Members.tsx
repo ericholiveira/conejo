@@ -72,7 +72,7 @@ const Members = ({ team }: { team: Team }) => {
           return (
             <tr
               key={member.id}
-              className="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+              className="border-b bg-base-200"
             >
               <td>
               <div className="flex items-center space-x-3">
