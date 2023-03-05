@@ -78,7 +78,7 @@ export default function Sidebar() {
           />
         </li>
         <li>
-          <ThemeChanger/>
+          <ThemeChanger show={true}/>
         </li>
       </ul>
     </>
