@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 
 import TeamNav from '../interfaces/Team/TeamNav'
 import NavItem from './NavItem'
+import ThemeChanger from './ThemeChanger'
 
 export default function Sidebar() {
   const router = useRouter()
@@ -24,6 +25,14 @@ export default function Sidebar() {
   return (
     <>
       <ul className="menu bg-base-100 w-56  ">
+      <li>
+        <NavItem
+          href="/"
+          text={t('app-name')}
+          icon={HomeIcon}
+          active={router.pathname === '/dashboard'}
+        />
+      </li>
         <li>
           <NavItem
             href="/dashboard"
@@ -75,6 +84,9 @@ export default function Sidebar() {
             onClick={() => signOut()}
             active={false}
           />
+        </li>
+        <li>
+          <ThemeChanger/>
         </li>
       </ul>
     </>

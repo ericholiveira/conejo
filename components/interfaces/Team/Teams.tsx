@@ -31,52 +31,65 @@ const Teams = () => {
   }
 
   return (
-    <div className="overflow-x-auto">
-      <table className="table table-zebra w-full">
-        {/* head*/}
-        <thead>
-          <tr>
-            <th>{t('name')}</th>
-            <th>{t('members')}</th>
-            <th>{t('created-at')}</th>
-            <th>{t('actions')}</th>
-          </tr>
-        </thead>
-        <tbody>
-        {teams && teams.map((team) => {
-          return (
-            <tr key={team.id}>
-              <td>
-              <div className="flex items-center space-x-3">
-                <div className="avatar">
-                  <div className="mask mask-squircle w-8 h-8">
-                    <LetterAvatar name={team.name} />
-                  </div>
-                </div>
-                <div>
-                <Link href={`/teams/${team.slug}/members`}>
-                  <a className="font-bold">{team.name}</a>
-                </Link>
-                </div>
-              </div>
-              </td>
-              <td>{team._count.members}</td>
-              <td>{new Date(team.createdAt).toDateString()}</td>
-              <td><Button
-                  className="btn-secondary"
-                  onClick={() => {
-                    leaveTeam(team)
-                  }}
-                >
-                  {t('leave-team')}
-                </Button>
-              </td>
-            </tr>
-          )
-        })}
-        </tbody>
-      </table>
-    </div>
+    <Card heading="Your Teams">
+      <Card.Body>
+        <table className="w-full table table-zebra table-fixed text-left text-sm ">
+          <thead className="text-xs uppercase">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                {t('name')}
+              </th>
+              <th scope="col" className="px-6 py-3">
+                {t('members')}
+              </th>
+              <th scope="col" className="px-6 py-3">
+                {t('created-at')}
+              </th>
+              <th scope="col" className="px-6 py-3">
+                {t('actions')}
+              </th>
+              </tr>
+          </thead>
+          <tbody>
+            {teams &&
+              teams.map((team) => {
+                return (
+                  <tr
+                    key={team.id}
+                    className="border-b hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600"
+                  >
+                    <td className="px-6 py-3">
+                      <Link href={`/teams/${team.slug}/members`}>
+                        <a>
+                          <div className="flex items-center justify-start space-x-2">
+                            <LetterAvatar name={team.name} />
+                            <span className="underline">{team.name}</span>
+                          </div>
+                        </a>
+                      </Link>
+                    </td>
+                    <td className="px-6 py-3">{team._count.members}</td>
+                    <td className="px-6 py-3">
+                      {new Date(team.createdAt).toDateString()}
+                    </td>
+                    <td className="px-6 py-3">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          leaveTeam(team)
+                        }}
+                      >
+                        {t('leave-team')}
+                      </Button>
+                    </td>
+                  </tr>
+                )
+              })}
+          </tbody>
+        </table>
+      </Card.Body>
+    </Card>
   )
 }
 

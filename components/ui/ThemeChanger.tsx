@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { themeChange } from 'theme-change'
 
 
-export default function Navbar() {
+export default function ThemeChanger() {
   useEffect(() => {
     themeChange(false)
     // 👆 false parameter is required for react project

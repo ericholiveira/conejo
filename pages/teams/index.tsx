@@ -13,8 +13,10 @@ const AllTeams: NextPageWithLayout = () => {
 
   return (
     <>
+      
+      <CreateTeam visible={visible} setVisible={setVisible} />
+      <Teams />
       <div className="flex items-center justify-between">
-        <h4>{t('all-teams')}</h4>
         <Button
           size="sm"
           color="primary"
@@ -26,8 +28,6 @@ const AllTeams: NextPageWithLayout = () => {
           {t('create-team')}
         </Button>
       </div>
-      <CreateTeam visible={visible} setVisible={setVisible} />
-      <Teams />
     </>
   )
 }
