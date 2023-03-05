@@ -21,6 +21,8 @@
   "send-magic-link": "Send Magic Link",
   "start-trial":"Start your 30-day free trial",
   "magic-link-description":"We’ll email you a magic link for a password-free sign in.",
+  "continue-with-google":"Continue with Google",
+  "continue-with-github":"Continue with Github",
 
 
   "your-name": "Your name",

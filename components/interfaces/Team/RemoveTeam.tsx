@@ -48,7 +48,6 @@ const RemoveTeam = ({ team }: { team: Team }) => {
             size="sm"
             onClick={removeTeam}
             loading={loading}
-            className="text-white"
           >
             {t('remove-team')}
           </Button>

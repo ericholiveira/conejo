@@ -9,9 +9,11 @@ import { Button } from 'react-daisyui'
 import toast from 'react-hot-toast'
 import type { ApiResponse } from 'types'
 import * as Yup from 'yup'
+import { useTranslation } from 'next-i18next'
 
 const TeamSettings = ({ team }: { team: Team }) => {
   const router = useRouter()
+  const { t } = useTranslation('common')
 
   const formik = useFormik({
     initialValues: {
@@ -85,10 +87,9 @@ const TeamSettings = ({ team }: { team: Team }) => {
                 color="primary"
                 loading={formik.isSubmitting}
                 disabled={!formik.isValid || !formik.dirty}
-                className="text-white"
                 size="sm"
               >
-                Save Changes
+                {t('save-changes')}
               </Button>
             </div>
           </Card.Footer>

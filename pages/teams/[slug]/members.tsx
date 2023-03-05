@@ -38,7 +38,6 @@ const TeamMembers: NextPageWithLayout = () => {
         <Button
           size="sm"
           color="primary"
-          className="text-white"
           onClick={() => {
             setVisible(!visible)
           }}
