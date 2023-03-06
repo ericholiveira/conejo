@@ -1,5 +1,6 @@
-import ThemeChanger from '../ui/ThemeChanger'
 import { useTranslation } from 'next-i18next'
+
+import ThemeChanger from '../ui/ThemeChanger'
 
 type Props = {
   children: React.ReactNode
@@ -21,7 +22,7 @@ export default function AuthLayout({ children, heading, description }: Props) {
           </p>
         </div>
         {children}
-        <ThemeChanger/>
+        <ThemeChanger />
       </div>
     </div>
   )

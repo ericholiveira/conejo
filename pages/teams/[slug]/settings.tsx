@@ -1,8 +1,4 @@
-import {
-  RemoveTeam,
-  TeamSettings,
-  TeamTab,
-} from '@/components/interfaces/Team'
+import { RemoveTeam, TeamSettings, TeamTab } from '@/components/interfaces/Team'
 import { Error, Loading } from '@/components/ui'
 import useTeam from 'hooks/useTeam'
 import type { GetServerSidePropsContext } from 'next'

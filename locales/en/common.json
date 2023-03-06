@@ -1,16 +1,16 @@
 {
-  "app-name":"SaaS",
+  "app-name": "SaaS",
   "sign-in": "Sign in",
-  "welcome-back":"Welcome back",
+  "welcome-back": "Welcome back",
   "login": "Login using an existing account",
-  "login-to-account":"Log in to your account",
+  "login-to-account": "Log in to your account",
   "login-error": "There was a problem with your login.",
   "email-login-error": "Something went wrong while sending the email. Please try again later.",
   "email-login-success": "A sign in link has been sent to your email address. The link will expire in 24 hours.",
   "dont-have-an-account": "Don`t have an account?",
   "create-a-free-account": "Create a free account",
   "sign-up-message": "Signing up signifies that you have read and agree to the Terms of Service and our Privacy Policy.",
-  
+
   "sign-in-with-email": "Sign in with Email",
   "sign-in-with-password": "Sign in with Password",
   "create-a-new-account": "Create a new account",
@@ -19,13 +19,12 @@
   "already-have-an-account": "Already have an account?",
   "continue-with-saml-sso": "Continue with SAML SSO",
   "sign-in-with-saml-sso": "Sign in with SAML SSO",
-  "your-id-slug":"Your ID is the slug after the hostname.",
+  "your-id-slug": "Your ID is the slug after the hostname.",
   "send-magic-link": "Send Magic Link",
-  "start-trial":"Start your 30-day free trial",
-  "magic-link-description":"We’ll email you a magic link for a password-free sign in.",
-  "continue-with-google":"Continue with Google",
-  "continue-with-github":"Continue with Github",
-
+  "start-trial": "Start your 30-day free trial",
+  "magic-link-description": "We’ll email you a magic link for a password-free sign in.",
+  "continue-with-google": "Continue with Google",
+  "continue-with-github": "Continue with Github",
 
   "your-name": "Your name",
   "your-email": "Your email",
@@ -56,8 +55,6 @@
   "coming-soon": "Coming Soon",
   "provision": "Provision and de-provision users with your directory provider.",
 
-
-
   "name": "Name",
   "email": "Email",
   "members": "Members",
@@ -76,7 +73,6 @@
   "saml-config-updated": "SAML Config updated successfully.",
   "setup-saml-auth": "Fill out the information below to set up SAML authentication for added security",
   "entity-id": "Entity ID",
-  
 
   "add-webhook": "Add Webhook",
   "webhook-created": "Webhook created successfully.",

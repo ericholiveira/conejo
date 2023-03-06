@@ -13,7 +13,6 @@ const AllTeams: NextPageWithLayout = () => {
 
   return (
     <>
-      
       <CreateTeam visible={visible} setVisible={setVisible} />
       <Teams />
       <div className="flex items-center justify-between">

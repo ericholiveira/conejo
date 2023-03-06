@@ -114,10 +114,7 @@ const SSO: NextPageWithLayout = () => {
 
 SSO.getLayout = function getLayout(page: ReactElement) {
   return (
-    <AuthLayout
-      heading="sign-in-with-saml-sso"
-      description="your-id-slug"
-    >
+    <AuthLayout heading="sign-in-with-saml-sso" description="your-id-slug">
       {page}
     </AuthLayout>
   )

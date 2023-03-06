@@ -71,10 +71,7 @@ const Webhooks = ({ team }: { team: Team }) => {
             <tbody>
               {webhooks.map((webhook) => {
                 return (
-                  <tr
-                    key={webhook.id}
-                    className="border-b bg-base-200"
-                  >
+                  <tr key={webhook.id} className="border-b bg-base-200">
                     <td className="px-6 py-3">{webhook.description}</td>
                     <td className="px-6 py-3">{webhook.url}</td>
                     <td className="px-6 py-3">
