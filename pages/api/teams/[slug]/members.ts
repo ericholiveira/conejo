@@ -29,7 +29,7 @@ export default async function handler(
     default:
       res.setHeader('Allow', 'GET, DELETE, PUT, PATCH')
       res.status(405).json({
-        error: { message: `Method ${method} Not Allow` },
+        error: { message: `Method ${method} Not Allowed` },
       })
   }
 }
