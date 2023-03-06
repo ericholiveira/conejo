@@ -84,7 +84,6 @@
   "create-webhook": "Create Webhook",
   "webhook-create-desc": "Create webhook to listen to events from app.",
   "edit-webhook-endpoint": "Edit Webhook Endpoint",
-  "events-to-send": "Events to send",
 
 
   "delete-success":"Successfully deleted",
@@ -96,5 +95,6 @@
   "password":"password",
   "host":"host",
   "port":"port",
-  "database":"database"
+  "database":"database",
+  "events-to-send": "Events to send"
 }
