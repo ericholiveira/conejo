@@ -1,14 +1,14 @@
 import { signIn } from 'next-auth/react'
-import { Button } from 'react-daisyui'
 import { useTranslation } from 'next-i18next'
+import { Button } from 'react-daisyui'
 
 const GithubButton = () => {
   const { t } = useTranslation('common')
   return (
     <Button
-    type="button"
-    className="w-full"
-    variant="outline"
+      type="button"
+      className="w-full"
+      variant="outline"
       onClick={() => {
         signIn('github', {
           callbackUrl: '/home',

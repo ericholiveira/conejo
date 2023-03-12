@@ -3,7 +3,7 @@ import type { Team } from '@prisma/client'
 import classNames from 'classnames'
 import Link from 'next/link'
 
-const TeamTab = ({ activeTab, team }: { activeTab: string, team: Team }) => {
+const TeamTab = ({ activeTab, team }: { activeTab: string; team: Team }) => {
   const navigations = teamNavigations(team.slug, activeTab)
 
   return (

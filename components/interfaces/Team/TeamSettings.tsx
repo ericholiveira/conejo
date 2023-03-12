@@ -3,13 +3,13 @@ import { getAxiosError } from '@/lib/common'
 import { Team } from '@prisma/client'
 import axios from 'axios'
 import { useFormik } from 'formik'
+import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { Button } from 'react-daisyui'
 import toast from 'react-hot-toast'
 import type { ApiResponse } from 'types'
 import * as Yup from 'yup'
-import { useTranslation } from 'next-i18next'
 
 const TeamSettings = ({ team }: { team: Team }) => {
   const router = useRouter()

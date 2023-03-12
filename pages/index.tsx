@@ -1,21 +1,20 @@
 import { GetServerSidePropsContext } from 'next'
-
-import type { NextPageWithLayout } from 'types'
 import { getSession } from 'next-auth/react'
+import type { NextPageWithLayout } from 'types'
 
 const Home: NextPageWithLayout = () => {
-  return (<></>)
+  return <></>
 }
 
-export async function getServerSideProps(context:GetServerSidePropsContext) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getSession(context)
-  const destination = session? '/home':'/auth/login'
+  const destination = session ? '/home' : '/auth/login'
   return {
     redirect: {
       destination,
       permanent: false,
     },
-    props:{},
+    props: {},
   }
 }
 

@@ -130,7 +130,7 @@ const handlePUT = async (req: NextApiRequest, res: NextApiResponse) => {
 // Update the role of a member
 const handlePATCH = async (req: NextApiRequest, res: NextApiResponse) => {
   const { slug } = req.query as { slug: string }
-  const { memberId, role } = req.body as { memberId: string, role: Role }
+  const { memberId, role } = req.body as { memberId: string; role: Role }
 
   const session = await getSession(req, res)
 

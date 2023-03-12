@@ -48,7 +48,7 @@ const Teams = () => {
               <th scope="col" className="px-6 py-3">
                 {t('actions')}
               </th>
-              </tr>
+            </tr>
           </thead>
           <tbody>
             {teams &&

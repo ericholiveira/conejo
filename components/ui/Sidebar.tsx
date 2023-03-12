@@ -49,15 +49,15 @@ export default function Sidebar() {
           />
         </li>
         {team && (
-        <li>
-          <NavItem
-            href="javascript:void(0);"
-            text={team.name}
-            icon={UsersIcon}
-            active={false}
-          />
-          <TeamNav slug={slug} />
-        </li>
+          <li>
+            <NavItem
+              href="javascript:void(0);"
+              text={team.name}
+              icon={UsersIcon}
+              active={false}
+            />
+            <TeamNav slug={slug} />
+          </li>
         )}
         <li>
           <NavItem
@@ -83,13 +83,13 @@ export default function Sidebar() {
             onClick={async () => {
               localStorage.clear()
               await signOut()
-              router.push("/auth/login")
+              router.push('/auth/login')
             }}
             active={false}
           />
         </li>
         <li>
-          <ThemeChanger show={true}/>
+          <ThemeChanger show={true} />
         </li>
       </ul>
     </>
